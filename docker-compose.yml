@@ -1,0 +1,21 @@
+services:
+  restaurant-service:
+    container_name: restaurant-service
+    build:
+      context: ./restaurant-service
+    ports:
+      - "4001:4001"
+    environment:
+      SERVER_PORT: 4001
+      SPRING_DATASOURCE_URL: jdbc:postgresql://restaurant_db:5432/${POSTGRES_RESTAURANT_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    networks:
+      - food-network
+
+
+networks:
+  food-network:
+    external: true

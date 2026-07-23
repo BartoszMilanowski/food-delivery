@@ -11,6 +11,9 @@ public class MenuItemResponseDto {
     private String imageUrl;
     private boolean available;
 
+    public MenuItemResponseDto() {
+    }
+
     public MenuItemResponseDto(String id, String name, String description, BigDecimal price,
                                String imageUrl, boolean available) {
         this.id = id;

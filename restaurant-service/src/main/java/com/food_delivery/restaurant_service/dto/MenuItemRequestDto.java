@@ -1,7 +1,5 @@
 package com.food_delivery.restaurant_service.dto;
 
-import com.food_delivery.restaurant_service.model.MenuCategory;
-import com.food_delivery.restaurant_service.model.Restaurant;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

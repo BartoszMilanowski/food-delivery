@@ -10,6 +10,9 @@ public class RestaurantResponseDto {
     private String postalCode;
     private String phoneNumber;
 
+    public RestaurantResponseDto() {
+    }
+
     public RestaurantResponseDto(String id, String name, String cuisineType,
                                  String street, String city, String postalCode, String phoneNumber) {
         this.id = id;

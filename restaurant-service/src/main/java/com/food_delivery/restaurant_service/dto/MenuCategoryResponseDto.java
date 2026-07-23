@@ -6,6 +6,9 @@ public class MenuCategoryResponseDto {
     private String name;
     private int displayOrder;
 
+    public MenuCategoryResponseDto() {
+    }
+
     public MenuCategoryResponseDto(String id, String name, int displayOrder) {
         this.id = id;
         this.name = name;

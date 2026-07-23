@@ -37,4 +37,14 @@ public class RestaurantMapper {
 
         return r;
     }
+
+    public void updateEntity(Restaurant r, RestaurantRequestDto dto){
+        r.setName(dto.getName());
+        r.setCuisineType(dto.getCuisineType());
+        r.setStreet(dto.getStreet());
+        r.setCity(dto.getCity());
+        r.setPostalCode(dto.getPostalCode());
+        r.setPhoneNumber(dto.getPhoneNumber());
+        r.setActive(dto.isActive());
+    }
 }

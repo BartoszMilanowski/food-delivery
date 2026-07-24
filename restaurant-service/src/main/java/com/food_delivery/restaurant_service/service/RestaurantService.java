@@ -40,7 +40,7 @@ public class RestaurantService {
     }
 
     @Transactional(readOnly = true)
-    public List<RestaurantResponseDto> searchRestaurant(String city, String cuisineType, boolean active) {
+    public List<RestaurantResponseDto> searchRestaurants(String city, String cuisineType, boolean active) {
         Specification<Restaurant> spec = Specification
                 .where(RestaurantSpecifications.hasCity(city))
                 .and(RestaurantSpecifications.hasCuisineType(cuisineType))

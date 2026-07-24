@@ -30,6 +30,8 @@ public class RestaurantRequestDto {
     @NotNull(message = "Owner id is required")
     private UUID ownerId;
 
+    public RestaurantRequestDto(){}
+
     public RestaurantRequestDto(String name, String cuisineType, String street, String city, String postalCode,
                                 String phoneNumber, boolean active, UUID ownerId) {
         this.name = name;

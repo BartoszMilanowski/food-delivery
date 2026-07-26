@@ -25,6 +25,14 @@ public class RestaurantService {
         this.restaurantMapper = restaurantMapper;
     }
 
+    @Transactional(readOnly = true)
+    public List<RestaurantResponseDto> getRestaurants() {
+        return restaurantRepository.findAll()
+                .stream()
+                .map(restaurantMapper::toDto)
+                .toList();
+    }
+
     @Transactional
     public RestaurantResponseDto createRestaurant(RestaurantRequestDto dto) {
         Restaurant restaurant = restaurantMapper.toEntity(dto);
@@ -40,11 +48,19 @@ public class RestaurantService {
     }
 
     @Transactional(readOnly = true)
-    public List<RestaurantResponseDto> searchRestaurants(String city, String cuisineType, boolean active) {
+    public List<RestaurantResponseDto> searchRestaurants(String city,
+                                                         String cuisineType,
+                                                         Boolean active,
+                                                         String name,
+                                                         UUID ownerId
+
+    ) {
         Specification<Restaurant> spec = Specification
                 .where(RestaurantSpecifications.hasCity(city))
                 .and(RestaurantSpecifications.hasCuisineType(cuisineType))
-                .and(RestaurantSpecifications.isActive(active));
+                .and(RestaurantSpecifications.isActive(active))
+                .and(RestaurantSpecifications.nameContains(name))
+                .and(RestaurantSpecifications.ownerIdEquals(ownerId));
 
         return restaurantRepository.findAll(spec).stream()
                 .map(restaurantMapper::toDto)

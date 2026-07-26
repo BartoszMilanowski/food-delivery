@@ -145,7 +145,7 @@ public class RestaurantServiceTest {
                 .thenReturn(List.of(restaurant));
         when(restaurantMapper.toDto(restaurant)).thenReturn(responseDto);
 
-        List<RestaurantResponseDto> result = restaurantService.searchRestaurants("Warszawa", null, true);
+        List<RestaurantResponseDto> result = restaurantService.searchRestaurants("Warszawa", null, true, null, null);
 
         assertThat(result).containsExactly(responseDto);
     }

@@ -3,6 +3,8 @@ package com.food_delivery.restaurant_service.specification;
 import com.food_delivery.restaurant_service.model.Restaurant;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.util.UUID;
+
 public class RestaurantSpecifications {
 
     private RestaurantSpecifications() {
@@ -21,5 +23,17 @@ public class RestaurantSpecifications {
     public static Specification<Restaurant> isActive(Boolean active) {
         return (root, query, cb) ->
                 active == null ? cb.conjunction() : cb.equal(root.get("active"), active);
+    }
+
+    public static Specification<Restaurant> nameContains(String phrase) {
+        return (root, query, cb) ->
+                phrase == null
+                        ? cb.conjunction()
+                        : cb.like(cb.lower(root.get("name")), "%" + phrase.toLowerCase() + "%");
+    }
+
+    public static Specification<Restaurant> ownerIdEquals(UUID ownerId) {
+        return (root, query, cb) ->
+                ownerId == null ? cb.conjunction() : cb.equal(root.get("ownerId"), ownerId);
     }
 }

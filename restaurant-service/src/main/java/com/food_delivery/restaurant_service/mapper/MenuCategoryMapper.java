@@ -19,11 +19,11 @@ public class MenuCategoryMapper {
         return dto;
     }
 
-    public MenuCategory toEntity(MenuCategoryRequestDto dto, Restaurant restaurant) {
+    public MenuCategory toEntity(MenuCategoryRequestDto dto, Restaurant restaurant, int displayOrder) {
         MenuCategory mc = new MenuCategory();
 
         mc.setName(dto.getName());
-        mc.setDisplayOrder(dto.getDisplayOrder());
+        mc.setDisplayOrder(displayOrder);
         mc.setRestaurant(restaurant);
 
         return mc;

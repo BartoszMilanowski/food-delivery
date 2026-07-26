@@ -11,12 +11,14 @@ public class MenuCategoryRequestDto {
     @NotBlank(message = "Name is required")
     private String name;
 
-    private int displayOrder;
+    private Integer displayOrder;
 
     @NotNull(message = "Restaurant is required")
     private UUID restaurantId;
 
-    public MenuCategoryRequestDto(String name, int displayOrder, UUID restaurantId) {
+    public MenuCategoryRequestDto(){}
+
+    public MenuCategoryRequestDto(String name, Integer displayOrder, UUID restaurantId) {
         this.name = name;
         this.displayOrder = displayOrder;
         this.restaurantId = restaurantId;
@@ -30,11 +32,11 @@ public class MenuCategoryRequestDto {
         this.name = name;
     }
 
-    public int getDisplayOrder() {
+    public Integer getDisplayOrder() {
         return displayOrder;
     }
 
-    public void setDisplayOrder(int displayOrder) {
+    public void setDisplayOrder(Integer displayOrder) {
         this.displayOrder = displayOrder;
     }
 

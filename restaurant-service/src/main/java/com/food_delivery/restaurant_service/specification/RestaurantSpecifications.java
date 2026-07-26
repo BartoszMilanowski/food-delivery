@@ -12,12 +12,12 @@ public class RestaurantSpecifications {
 
     public static Specification<Restaurant> hasCity(String city) {
         return (root, query, cb) ->
-                city == null ? cb.conjunction() : cb.equal(root.get("city"), city);
+                city == null ? cb.conjunction() : cb.equal(cb.lower(root.get("city")), city.toLowerCase());
     }
 
     public static Specification<Restaurant> hasCuisineType(String cuisineType) {
         return (root, query, cb) ->
-                cuisineType == null ? cb.conjunction() : cb.equal(root.get("cuisineType"), cuisineType);
+                cuisineType == null ? cb.conjunction() : cb.equal(cb.lower(root.get("cuisineType")), cuisineType.toLowerCase());
     }
 
     public static Specification<Restaurant> isActive(Boolean active) {

@@ -9,18 +9,18 @@ public class ErrorResponse {
     private final int status;
     private final String error;
     private final String message;
-    private final Map<String, String> fieldError;
+    private final Map<String, String> fieldErrors;
 
     public ErrorResponse(Instant timestamp, int status, String error, String message) {
         this(timestamp, status, error, message, null);
     }
 
-    public ErrorResponse(Instant timestamp, int status, String error, String message, Map<String, String> fieldError) {
+    public ErrorResponse(Instant timestamp, int status, String error, String message, Map<String, String> fieldErrors) {
         this.timestamp = timestamp;
         this.status = status;
         this.error = error;
         this.message = message;
-        this.fieldError = fieldError;
+        this.fieldErrors = fieldErrors;
     }
 
     public Instant getTimestamp() {
@@ -39,7 +39,7 @@ public class ErrorResponse {
         return message;
     }
 
-    public Map<String, String> getFieldError() {
-        return fieldError;
+    public Map<String, String> getFieldErrors() {
+        return fieldErrors;
     }
 }

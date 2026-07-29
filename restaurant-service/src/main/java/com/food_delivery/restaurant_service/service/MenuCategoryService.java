@@ -63,7 +63,7 @@ public class MenuCategoryService {
                 ? requestDto.getDisplayOrder()
                 : nextDisplayOrder(restaurant.getId());
 
-        MenuCategory menuCategory = new MenuCategory(requestDto.getName(), displayOrder, restaurant);
+        MenuCategory menuCategory = menuCategoryMapper.toEntity(requestDto, restaurant, displayOrder);
         MenuCategory saved = menuCategoryRepository.save(menuCategory);
 
         return menuCategoryMapper.toDto(saved);

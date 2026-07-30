@@ -30,6 +30,8 @@ public class MenuItemRequestDto {
     @NotNull(message = "Restaurant is required")
     private UUID restaurantId;
 
+    public MenuItemRequestDto(){}
+
     public MenuItemRequestDto(String name, String description, BigDecimal price, boolean available,
                               String imageUrl, UUID categoryId, UUID restaurantId) {
         this.name = name;

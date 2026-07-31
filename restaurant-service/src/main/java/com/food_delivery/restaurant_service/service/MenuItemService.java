@@ -13,13 +13,14 @@ import com.food_delivery.restaurant_service.repository.MenuCategoryRepository;
 import com.food_delivery.restaurant_service.repository.MenuItemRepository;
 import com.food_delivery.restaurant_service.repository.RestaurantRepository;
 import io.swagger.v3.oas.annotations.servers.Server;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
 
 
-@Server
+@Service
 public class MenuItemService {
 
     private final MenuItemRepository menuItemRepository;

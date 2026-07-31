@@ -91,7 +91,6 @@ public class MenuCategoryControllerTest {
                 .andExpect(jsonPath("$.fieldErrors.name").value("Name is required"));
 
         verify(menuCategoryService, never()).createMenuCategory(any());
-
     }
 
     @Test

@@ -3,6 +3,7 @@ package com.food_delivery.restaurant_service.controller;
 import com.food_delivery.restaurant_service.dto.MenuCategoryRequestDto;
 import com.food_delivery.restaurant_service.dto.MenuCategoryResponseDto;
 import com.food_delivery.restaurant_service.service.MenuCategoryService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class MenuCategoryController {
 
     @PostMapping
     public ResponseEntity<MenuCategoryResponseDto> createMenuCategory(
-            @RequestBody MenuCategoryRequestDto requestDto
+            @Valid @RequestBody MenuCategoryRequestDto requestDto
     ){
         return ResponseEntity.status(HttpStatus.CREATED).body(menuCategoryService.createMenuCategory(requestDto));
     }
@@ -46,7 +47,7 @@ public class MenuCategoryController {
     @PutMapping("/{id}")
     public ResponseEntity<MenuCategoryResponseDto> updateMenuCategory(
             @PathVariable UUID id,
-            @RequestBody MenuCategoryRequestDto requestDto
+            @Valid @RequestBody MenuCategoryRequestDto requestDto
     ){
         return ResponseEntity.ok(menuCategoryService.updateMenuCategory(id, requestDto));
     }

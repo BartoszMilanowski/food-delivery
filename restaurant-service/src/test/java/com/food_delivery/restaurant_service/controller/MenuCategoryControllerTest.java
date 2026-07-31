@@ -3,7 +3,6 @@ package com.food_delivery.restaurant_service.controller;
 import com.food_delivery.restaurant_service.dto.MenuCategoryRequestDto;
 import com.food_delivery.restaurant_service.dto.MenuCategoryResponseDto;
 import com.food_delivery.restaurant_service.exception.MenuCategoryNotFoundException;
-import com.food_delivery.restaurant_service.model.MenuCategory;
 import com.food_delivery.restaurant_service.service.MenuCategoryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -124,6 +124,4 @@ public class MenuItemService {
 
         menuItemRepository.deleteById(id);
     }
-
-
 }

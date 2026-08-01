@@ -3,6 +3,8 @@ package com.food_delivery.restaurant_service.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +24,9 @@ public class MenuCategory {
     @JoinColumn(name = "restaurant_id", nullable = false)
     @NotNull
     private Restaurant restaurant;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<MenuItem> menuItems = new ArrayList<>();
 
     public MenuCategory() {
     }
@@ -58,5 +63,9 @@ public class MenuCategory {
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
+    }
+
+    public List<MenuItem> getMenuItems() {
+        return menuItems;
     }
 }

@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: restaurant-service-restaurants
+              uri: http://restaurant-service:4001
+              predicates:
+                - Path=/restaurants/**
+            - id: restaurant-service-menu
+              uri: http://restaurant-service:4001
+              predicates:
+                - Path=/menu/**
+
+management:
+  endpoint:
+    gateway:
+      access: read-only
+  endpoints:
+    web:
+      exposure:
+        include: health,gateway

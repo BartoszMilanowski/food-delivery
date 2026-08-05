@@ -30,6 +30,25 @@ services:
     networks:
       - food-network
 
+  order-service:
+    container_name: order-service
+    build:
+      context: ./order-service
+    ports:
+      - "4002:4002"
+    environment:
+      SERVER_PORT: 4002
+      SPRING_DATASOURCE_URL: jdbc:postgresql://order_db:5432/${POSTGRES_ORDER_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_HTTP_CLIENT_SERVICE_GROUP_RESTAURANT_BASE_URL: http://restaurant-service:4001
+    depends_on:
+      - restaurant-service
+    networks:
+      - food-network
+
 
 networks:
   food-network:

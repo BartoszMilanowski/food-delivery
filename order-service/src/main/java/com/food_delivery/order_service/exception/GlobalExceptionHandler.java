@@ -1,6 +1,5 @@
-package com.food_delivery.restaurant_service.exception;
+package com.food_delivery.order_service.exception;
 
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -15,8 +14,8 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(RestaurantNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleRestaurantNotFound(RestaurantNotFoundException ex) {
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleOrderNotFoundException(OrderNotFoundException ex) {
         ErrorResponse body = new ErrorResponse(
                 Instant.now(),
                 HttpStatus.NOT_FOUND.value(),
@@ -26,8 +25,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
     }
 
-    @ExceptionHandler(MenuCategoryNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleMenuCategoryNotFound(MenuCategoryNotFoundException ex){
+    @ExceptionHandler(RestaurantNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleRestaurantNotFoundException(RestaurantNotFoundException ex) {
         ErrorResponse body = new ErrorResponse(
                 Instant.now(),
                 HttpStatus.NOT_FOUND.value(),
@@ -38,7 +37,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MenuItemNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleMenuItemNotFound(MenuItemNotFoundException ex){
+    public ResponseEntity<ErrorResponse> handleMenuItemNotFoundException(MenuItemNotFoundException ex){
         ErrorResponse body = new ErrorResponse(
                 Instant.now(),
                 HttpStatus.NOT_FOUND.value(),
@@ -46,6 +45,17 @@ public class GlobalExceptionHandler {
                 ex.getMessage()
         );
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+    }
+
+    @ExceptionHandler(MenuItemNotAvailableException.class)
+    public ResponseEntity<ErrorResponse> handleMenuItemNotAvailable(MenuItemNotAvailableException ex){
+        ErrorResponse body = new ErrorResponse(
+                Instant.now(),
+                HttpStatus.CONFLICT.value(),
+                HttpStatus.CONFLICT.getReasonPhrase(),
+                ex.getMessage()
+        );
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -76,14 +86,4 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<ErrorResponse> handleDataIntegrityViolation(DataIntegrityViolationException ex) {
-        ErrorResponse body = new ErrorResponse(
-                Instant.now(),
-                HttpStatus.CONFLICT.value(),
-                HttpStatus.CONFLICT.getReasonPhrase(),
-                "Cannot delete: this resource is still referenced by other records"
-        );
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
-    }
 }

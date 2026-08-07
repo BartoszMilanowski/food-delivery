@@ -1,0 +1,16 @@
+-- Zamówienia
+INSERT INTO orders (id, customer_id, restaurant_id, status, delivery_street, delivery_city, delivery_postal_code, total_price, created_at)
+VALUES
+    ('c1111111-1111-1111-1111-111111111111', 'e1111111-1111-1111-1111-111111111111', '22222222-2222-2222-2222-222222222222',
+     'CREATED', 'Testowa 1', 'Warszawa', '00-001', 81.00, now()),
+    ('c2222222-2222-2222-2222-222222222222', 'e2222222-2222-2222-2222-222222222222', '22222222-2222-2222-2222-222222222222',
+     'PAYMENT_CONFIRMED', 'Długa 12', 'Kraków', '30-002', 72.00, now())
+    ON CONFLICT (id) DO NOTHING;
+
+-- Pozycje zamówień
+INSERT INTO order_item (id, order_id, menu_item_id, menu_item_name, unit_price, quantity)
+VALUES
+    ('d1111111-1111-1111-1111-111111111111', 'c1111111-1111-1111-1111-111111111111', 'b2222222-1111-1111-1111-111111111111', 'California Roll', 36.00, 2),
+    ('d1111111-1111-1111-1111-222222222222', 'c1111111-1111-1111-1111-111111111111', 'b2222222-2222-2222-2222-111111111111', 'Zielona herbata', 9.00, 1),
+    ('d2222222-1111-1111-1111-111111111111', 'c2222222-2222-2222-2222-222222222222', 'b2222222-1111-1111-1111-222222222222', 'Salmon Nigiri', 24.00, 3)
+    ON CONFLICT (id) DO NOTHING;

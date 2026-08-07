@@ -44,6 +44,8 @@ services:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_HTTP_CLIENT_SERVICE_GROUP_RESTAURANT_BASE_URL: http://restaurant-service:4001
+      SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION: true
+      SPRING_SQL_INIT_MODE: always
     depends_on:
       - restaurant-service
     networks:
